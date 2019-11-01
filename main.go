@@ -71,6 +71,7 @@ Please enter the username of the machine you'd like to connect to.
 		switch input1 {
 		case "1":
 			runclear()
+			cato()
 			cmd1, err1 := exec.Command("ssh", agent1, "cd ~/Logs/ && ps -aux", ">", "log"+lognumberst+".txt", "&&", "cat log"+lognumberst+".txt").Output()
 			runclear()
 			lognumber++
@@ -109,6 +110,7 @@ Please enter the username of the machine you'd like to connect to.
 				switch input2 {
 				case "1":
 					runclear()
+					cato()
 					cmd11, err11 := exec.Command("ssh", agent1, "cd ~/Logs/ && ls").Output()
 					runclear()
 					if err11 != nil {
@@ -130,6 +132,7 @@ Please enter the username of the machine you'd like to connect to.
 					scanner3.Scan()
 					input3 := scanner3.Text()
 					runclear()
+					cato()
 					cmd12, err12 := exec.Command("ssh", agent1, "cd ~/Logs/ && cat "+input3+".txt").Output()
 					runclear()
 					if err12 != nil {
@@ -164,6 +167,7 @@ Please enter the username of the machine you'd like to connect to.
 					scanner4.Scan()
 					input4 := scanner4.Text()
 					runclear()
+					cato()
 					cmd13, err13 := exec.Command("ssh", agent1, "cd ~/Logs/ && rm "+input4+".txt").Output()
 					runclear()
 					if err13 != nil {
@@ -211,6 +215,7 @@ Please enter the username of the machine you'd like to connect to.
 
 		case "3":
 			runclear()
+			cato()
 			cmd3, err3 := exec.Command("ssh", agent1, "ls").Output()
 			runclear()
 			if err3 != nil {
@@ -226,6 +231,7 @@ Please enter the username of the machine you'd like to connect to.
 			}
 		case "4":
 			runclear()
+			cato()
 			cmd4, err4 := exec.Command("ssh", agent1, "cd / && ls").Output()
 			runclear()
 			if err4 != nil {
@@ -264,6 +270,7 @@ Please enter the username of the machine you'd like to connect to.
 
 func getIPInterfaces() {
 	runclear()
+	cato()
 	cmd5, err5 := exec.Command("ssh", agent1, "go", "run", "interfaces.go").Output()
 	runclear()
 	if err5 != nil {
@@ -276,18 +283,24 @@ func getIPInterfaces() {
 
 func getIPInterfacesFlag() {
 	runclear()
+	cato()
 	fmt.Println("Please enter the handle of the target machine.")
 
 	scanner10 := bufio.NewScanner(os.Stdin)
 	scanner10.Scan()
 	agent1 = scanner10.Text()
 
+	runclear()
+	cato()
 	cmd5, err5 := exec.Command("ssh", agent1, "go", "run", "interfaces.go").Output()
+	runclear()
 	if err5 != nil {
+		catx()
 		fmt.Println("Uh-oh, looks like I couldn't connect to " + agent1 + ". Please make sure it is online.")
 		log.Fatal(err5)
 	}
 	fmt.Println(string(cmd5))
+	cato()
 	fmt.Println(agent1 + "'s IP interfaces were successfully displayed using the -i shortcut! Exiting now...")
 	os.Exit(1)
 }
