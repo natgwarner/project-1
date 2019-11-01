@@ -138,7 +138,7 @@ Please enter the username of the machine you'd like to connect to.
 							fmt.Println("I wasn't able to print any logs; there are none currently on the system. What would you like me to do now?")
 						} else {
 							catx()
-							fmt.Println("Sorry, but I couldn't find that log. Try using command 1 to view available logs.")
+							fmt.Println("Sorry, I couldn't find that log. Try using command 1 to view available logs.")
 						}
 						for j := 0; j < len(logoptions); j++ {
 							fmt.Println(logoptions[j])
@@ -172,7 +172,7 @@ Please enter the username of the machine you'd like to connect to.
 							fmt.Println("I wasn't able to delete any logs; there are none currently on the system. What would you like me to do now?")
 						} else {
 							catx()
-							fmt.Println("Sorry, but I couldn't find that log. Try using command 1 to view available logs.")
+							fmt.Println("Sorry, I couldn't find that log. Try using command 1 to view available logs.")
 						}
 						for j := 0; j < len(logoptions); j++ {
 							fmt.Println(logoptions[j])
