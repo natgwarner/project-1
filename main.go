@@ -46,7 +46,7 @@ Please enter the username of the machine you'd like to connect to.
 
 	agent1 = username + "@" + ipaddress
 
-	options = []string{"1: View and log " + username + "'s running programs", "2: Open the logging menu", "3: View files within home (~)", "4: View files within root (/)", "5: View " + username + "'s IP interfaces", "6: Exit"}
+	options = []string{"1: View and log " + username + "'s running programs", "2: Open the logging menu", "3: View files within home (~)", "4: View files within root (/)", "5: View " + username + "'s file tree from home (~)", "6: View " + username + "'s IP interfaces", "7: Exit"}
 	logoptions = []string{"1: View the list of logs", "2: View the contents of a log", "3: Delete a log", "4: Return to main menu"}
 
 	runclear()
@@ -245,7 +245,7 @@ Please enter the username of the machine you'd like to connect to.
 			for i := 0; i < len(options); i++ {
 				fmt.Println(options[i])
 			}
-		case "5":
+		case "6":
 			runclear()
 			getIPInterfaces()
 			cato()
@@ -253,7 +253,23 @@ Please enter the username of the machine you'd like to connect to.
 			for i := 0; i < len(options); i++ {
 				fmt.Println(options[i])
 			}
-		case "6":
+		case "5":
+			runclear()
+			cato()
+			cmd9, err9 := exec.Command("ssh", agent1, "tree").Output()
+			runclear()
+			if err9 != nil {
+				catx()
+				fmt.Println("Uh-oh, looks like I couldn't connect to " + agent1 + ". Please make sure it is online.")
+				log.Fatal(err9)
+			}
+			fmt.Println(string(cmd9))
+			cato()
+			fmt.Println(username + "'s tree was successfully displayed! What would you like me to do now?")
+			for i := 0; i < len(options); i++ {
+				fmt.Println(options[i])
+			}
+		case "7":
 			runclear()
 			catsleep()
 			a++
